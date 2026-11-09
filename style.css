@@ -1,0 +1,190 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f4f6f8;
+  color: #17212b;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.jspsych-display-element {
+  width: 100% !important;
+  max-width: 860px !important;
+  margin: 0 auto !important;
+  padding: 16px !important;
+}
+
+.jspsych-content {
+  width: 100%;
+  max-width: 820px;
+  font-family: inherit;
+}
+
+.instruction-panel,
+.task-panel,
+.recall-panel,
+.feedback-panel {
+  width: min(100%, 760px);
+  margin: 0 auto;
+  padding: clamp(18px, 4vw, 32px);
+  border: 1px solid #d5dde5;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 4px 16px rgb(24 39 56 / 8%);
+}
+
+h1,
+h2 {
+  margin-top: 0;
+}
+
+p {
+  font-size: clamp(16px, 2.2vw, 19px);
+  line-height: 1.55;
+}
+
+.instructions {
+  margin: 12px auto 24px;
+}
+
+.symmetry-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  width: min(76vw, 440px);
+  aspect-ratio: 1;
+  margin: 20px auto 28px;
+  border: 2px solid #253546;
+  background: #fff;
+}
+
+.symmetry-cell {
+  border: 1px solid #9ba8b5;
+  background: #fff;
+}
+
+.symmetry-cell.is-filled {
+  background: #263746;
+}
+
+.memory-stimulus-grid,
+.recall-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(72vw, 340px);
+  aspect-ratio: 1;
+  margin: 24px auto;
+  border: 2px solid #253546;
+}
+
+.memory-stimulus-cell,
+.recall-cell {
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid #9ba8b5;
+  background: #fff;
+}
+
+.memory-stimulus-cell.is-highlighted {
+  background: #3676c5;
+}
+
+.recall-cell {
+  padding: 0;
+  color: #fff;
+  font-size: clamp(18px, 5vw, 28px);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.recall-cell:hover:not(:disabled) {
+  background: #e7f0fa;
+}
+
+.recall-cell.is-selected {
+  background: #3676c5;
+}
+
+.recall-cell:disabled {
+  cursor: default;
+}
+
+.recall-cell:focus-visible,
+button:focus-visible,
+.jspsych-btn:focus-visible {
+  outline: 3px solid #f0a500;
+  outline-offset: 2px;
+}
+
+.response-string {
+  min-height: 1.8em;
+  margin: 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.button-row,
+.jspsych-html-button-response-button-container {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center !important;
+  gap: 12px;
+  margin: 20px auto 0;
+}
+
+button,
+.jspsych-btn {
+  text-decoration: none;
+  min-height: 44px;
+  padding: 10px 22px;
+  border: 1px solid #265a91;
+  border-radius: 6px;
+  background: #fff;
+  color: #173b5e;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled),
+.jspsych-btn:hover {
+  background: #eaf2fa;
+}
+
+button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.validation-pass {
+  color: #176b36;
+}
+
+.validation-fail {
+  color: #a51f1f;
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 10px;
+  }
+
+  .jspsych-display-element {
+    padding: 4px !important;
+  }
+
+  .symmetry-grid {
+    width: min(88vw, 380px);
+  }
+
+  .memory-stimulus-grid,
+  .recall-grid {
+    width: min(82vw, 320px);
+  }
+}

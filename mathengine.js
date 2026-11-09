@@ -1,5 +1,0 @@
-function generateMathProblem(){
-
-    return null;
-
-}

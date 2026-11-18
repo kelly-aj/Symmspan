@@ -84,7 +84,12 @@
     row.trialType === "symmetry" && row.practice === true);
   assert(symmetryPractice.length === 15,
   "symmetry practice contains exactly fifteen labeled trials");
-  const practiceSymmetryCount = symmetryPractice.filter(row => row.correctAnswer).length;
+  const symmetryPracticeFeedback = trialRows.filter(row =>
+    row.phase === "symmetry-practice" && row.trialType === "practice-feedback"
+  );
+  const mainFeedback = trialRows.filter(row => row.phase === "main" && row.trialType === "practice-feedback");
+  assert(symmetryPracticeFeedback.length === symmetryPractice.length && mainFeedback.length === 0,
+    "correctness feedback is added only after symmetry-only practice judgments");
   assert(symmetryPractice.every(row => row.taskType === "symmetry-practice") &&
     gridPractice.every(row => row.taskType === "grid-memory-practice") &&
     mainSymmetry.every(row => row.taskType === "combined") &&
@@ -145,6 +150,11 @@
   });
   assert(mainAlternationValid, "each main memory item alternates symmetry judgment then square presentation");
 
+  const mainInstructions = plan.timeline.filter(trial => (trial.data || {}).phase === "main" &&
+    (trial.data || {}).trialType === "instruction");
+  assert(mainInstructions.every(trial => !/contains \d+ square|of \d+/.test(trial.stimulus)),
+    "main-task instructions do not disclose sequence lengths or total trial count");
+
   const locationScore = task.scoreSquareRecall([0, 5], [0, 5]);
   const summary = task.computeSummary([
     { ...locationScore, sequenceLength: 2, exactSequenceAccuracy: 1 }
@@ -184,6 +194,8 @@
   "recall response order, reaction time, and single-submit handler are recorded");
   assert(mount.querySelectorAll(".recall-cell").length === 16,
     "recall grid contains exactly 16 locations");
+  assert(mount.querySelector("#recallResponseString").textContent === "Selected → Selected",
+    "recall status does not show participant-facing row and column labels");
   const blankCell = mount.querySelectorAll(".recall-cell")[0];
   blankCell.click();
   mount.querySelector("#blankRecallBtn").click();
@@ -192,7 +204,7 @@
   "blank response records a missing answer in the correct position without advancing automatically");
   mount.querySelector("#clearRecallBtn").click();
   assert(mount.querySelector("#recallResponseString").textContent === "",
-  "clear resets recall selections");
+    "clear resets recall selections");
   mount.remove();
 
   const finalResult = document.createElement("p");

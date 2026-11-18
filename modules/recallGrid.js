@@ -97,7 +97,7 @@ function updateRecallGrid() {
 
   const display = recallRoot.querySelector("#recallResponseString");
   display.textContent = recallResponses.map(position =>
-    position === null ? "Blank" : `R${Math.floor(position / 4) + 1}C${position % 4 + 1}`
+    position === null ? "Blank" : "Selected"
   ).join(" → ");
   recallRoot.querySelector("#blankRecallBtn").disabled = recallResponses.length >= recallTargetCount;
   recallRoot.querySelector("#submitRecallBtn").disabled = recallResponses.length !== recallTargetCount;

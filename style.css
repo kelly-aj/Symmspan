@@ -93,7 +93,7 @@ p {
 }
 
 .memory-stimulus-cell.is-highlighted {
-  background: #3676c5;
+  background: #d62828;
 }
 
 .recall-cell {
@@ -109,11 +109,15 @@ p {
 }
 
 .recall-cell.is-selected {
-  background: #3676c5;
+  background: #d62828;
 }
 
 .recall-cell:disabled {
   cursor: default;
+}
+
+.recall-cell.is-selected:disabled {
+  opacity: 1;
 }
 
 .recall-cell:focus-visible,

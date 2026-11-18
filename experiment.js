@@ -1,8 +1,8 @@
 // Automated Symmetry Span task, using jsPsych 8.
 
 const DEFAULT_CONFIG = {
-  spans: [1, 2, 3, 4, 5, 6, 7],
-  repetitionsPerSpan: 2,
+  spans: [2, 3, 4, 5],
+  repetitionsPerSpan: 1,
   combinedPracticeTrials: 2,
   stimulusDuration: 800,
   interStimulusInterval: 250,

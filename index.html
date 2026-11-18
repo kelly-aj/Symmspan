@@ -31,8 +31,15 @@
     <!-- Spatial recall module -->
     <script src="modules/recallGrid.js"></script>
 
+    <!-- Main trials use only sequence lengths 2 through 5. -->
+    <script>
+        window.SYMMETRY_SPAN_CONFIG = Object.assign({}, window.SYMMETRY_SPAN_CONFIG || {}, {
+            spans: [2, 3, 4, 5]
+        });
+    </script>
+
     <!-- Main experiment -->
-    <script src="experiment.js?v=20261010T1808"></script>
+    <script src="experiment.js?v=20261118T1200"></script>
 
 </body>
 
